@@ -1,1 +1,47 @@
-<h1>Formulário de clientes</h1>
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+  <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <!--property binding vai daqui para clientes-form.component.ts e usa parenteses-->
+          <input type="text" [ngModel]="cliente.id" name="id" class="form-control" disabled="true" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data Cadastro</label>
+          <!--property binding vai daqui para clientes-form.component.ts e usa parenteses-->
+          <input type="text" class="form-control" name="dataCadastro" [ngModel]="cliente.dataCadastro"
+            disabled="true" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Nome: *</label>
+          <!--two way data binding funciona dos dois lados e usa colchetes e parenteses-->
+          <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CPF: *</label>
+          <!--two way data binding funciona dos dois lados e usa colchetes e parenteses-->
+          <input type="text" [(ngModel)]="cliente.cpf" name="cpf" class="form-control" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <!--event binding vem do clientes-form.component.ts e usa colchete-->
+      <button type="submit" class="btn btn-success" (click)="clicar()">
+        <i class="fa fa-save"></i> Salvar
+      </button>
+    </div>
+  </form>
+</div>
