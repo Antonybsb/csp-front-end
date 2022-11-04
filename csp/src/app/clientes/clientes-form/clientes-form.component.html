@@ -3,7 +3,9 @@
   <li class="breadcrumb-item active">Cadastro</li>
 </ol>
 <div class="container">
-  <form>
+  <!--ngForm é uma diretiva que indica que o formulário é um formulário angular
+  e é um event binding-->
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()" >
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -39,7 +41,7 @@
     </div>
     <div class="col-md-2">
       <!--event binding vem do clientes-form.component.ts e usa colchete-->
-      <button type="submit" class="btn btn-success" (click)="clicar()">
+      <button type="submit" class="btn btn-success" (click)="onSubmit()">
         <i class="fa fa-save"></i> Salvar
       </button>
     </div>
