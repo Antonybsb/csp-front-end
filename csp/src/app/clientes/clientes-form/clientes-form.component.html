@@ -5,7 +5,14 @@
 <div class="container">
   <!--ngForm é uma diretiva que indica que o formulário é um formulário angular
   e é um event binding-->
-  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()" >
+  <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success == true">
+          Cliente salvo/atualizado com sucesso!
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -43,6 +50,9 @@
       <!--event binding vem do clientes-form.component.ts e usa colchete-->
       <button type="submit" class="btn btn-success" (click)="onSubmit()">
         <i class="fa fa-save"></i> Salvar
+      </button>
+      <button type="submit" class="btn btn-success" (click)="onSubmit()">
+        <i class="fa fa-save"></i> Teste
       </button>
     </div>
   </form>
