@@ -11,11 +11,12 @@ import { ClientesService } from '../../clientes.service'
 export class ClientesFormComponent implements OnInit {
   //Para receber os dados do cliente para o template
   cliente: Cliente;
-  success: boolean = false;
+  success: boolean = true;
+  errors?: String[];
 
   constructor( private service : ClientesService) {
     this.cliente = new Cliente();
-    //this.cliente = service.getCliente();
+    // this.cliente = service.getCliente();
   }
 
   ngOnInit(): void {}
@@ -23,6 +24,9 @@ export class ClientesFormComponent implements OnInit {
   onSubmit() {
     this.service.salvar(this.cliente).subscribe( response => {
       this.success = true;
-    } )
+    } , errorResponse ==> {
+      this.errors = errorResponse.error.errors;
+    }
+    )
   }
 }
