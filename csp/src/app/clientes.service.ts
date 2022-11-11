@@ -13,7 +13,7 @@ export class ClientesService {
 
    }
 
-   salvar( Cliente : Cliente) : Observable<Cliente> {
+   salvar( cliente : Cliente) : Observable<Cliente> {
     return this.http.post<Cliente>('http://localhost:8080/api/clientes', Cliente)
    }
 
