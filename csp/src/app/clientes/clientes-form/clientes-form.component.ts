@@ -9,24 +9,25 @@ import { ClientesService } from '../../clientes.service'
   styleUrls: ['./clientes-form.component.css'],
 })
 export class ClientesFormComponent implements OnInit {
-  //Para receber os dados do cliente para o template
-  cliente: Cliente;
-  success: boolean = true;
-  errors?: String[];
 
-  constructor( private service : ClientesService) {
-    this.cliente = new Cliente();
-    // this.cliente = service.getCliente();
+  //Para receber os dados do cliente para o template
+  cliente!: Cliente;
+
+
+  constructor( private service: ClientesService) {
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onSubmit() {
-    this.service.salvar(this.cliente).subscribe( response => {
-      this.success = true;
-    } , errorResponse ==> {
-      this.errors = errorResponse.error.errors;
+    this.service
+    .salvar(this.cliente)
+    .subscribe( response => {
+      console.log(response);
     }
+
     )
   }
 }
