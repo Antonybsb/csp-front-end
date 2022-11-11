@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { Cliente } from './cliente';
-import { ClientesService } from '../../clientes.service'
+import { ClientesService } from '../../clientes.service';
 
 @Component({
   selector: 'app-clientes-form',
@@ -12,8 +13,9 @@ export class ClientesFormComponent implements OnInit {
   //Para receber os dados do cliente para o template
   cliente: Cliente;
   success: boolean = false;
+  errors: String[] = [];
 
-  constructor( private service : ClientesService) {
+  constructor(private service: ClientesService) {
     this.cliente = new Cliente();
     //this.cliente = service.getCliente();
   }
@@ -21,8 +23,13 @@ export class ClientesFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.service.salvar(this.cliente).subscribe( response => {
-      this.success = true;
-    } )
+    this.service.salvar(this.cliente).subscribe(
+      (response) => {
+        this.success = true;
+      },
+      (HttpErrorResponse) => {
+        this.errors = HttpErrorResponse.error.errors;
+      }
+    );
   }
 }
