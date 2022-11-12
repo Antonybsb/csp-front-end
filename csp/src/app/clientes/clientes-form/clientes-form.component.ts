@@ -12,6 +12,8 @@ export class ClientesFormComponent implements OnInit {
 
   //Para receber os dados do cliente para o template
   cliente!: Cliente;
+  success: boolean = false;
+  errors!: String[];
 
   constructor( private service: ClientesService) {
     this.cliente = new Cliente();
@@ -20,17 +22,17 @@ export class ClientesFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  clicar(){
-    console.log(this.cliente);
-  }
-
   onSubmit() {
     this.service
     .salvar(this.cliente)
     .subscribe( response => {
-      console.log(response);
+      this.success = true;
+      this.errors = [];
+      this.cliente = response;
+    } , errorResponse => {
+      this.success = false;
+      this.errors = errorResponse.error.errors;
     }
-
     )
   }
 }
